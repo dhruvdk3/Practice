@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+
 class Node{
 public:
     int data;
