@@ -23,11 +23,11 @@ void insert(Node*& root, int data){
     if(data > root->data) insert(root->right, data);
 }
 
-void inorder(Node* root){
+void preorder(Node* root){
     if(root == NULL) return;
     cout<<root->data<<" ";
-    inorder(root->left);
-    inorder(root->right);
+    preorder(root->left);
+    preorder(root->right);
 }
 
 int main(){
@@ -40,5 +40,5 @@ int main(){
     insert(root, 21);
     insert(root, 19);
     insert(root, 25);
-    inorder(root);
+    preorder(root);
 }
