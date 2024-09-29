@@ -35,6 +35,14 @@ Node* minval(Node* root){
     return root;
 }
 
+
+
+Node* maxval(Node* root){
+    while (root->right != NULL) root = root->right;
+    return root;
+}
+
+
 Node* deleteNode(Node*& root, int val){
     if (root == NULL) return root;
     if(root->data == val){
