@@ -54,6 +54,31 @@ class Heap{
         }
 };
 
+
+
+void heapyfy(int arr[], int n, int i) {
+    int largest = i;
+    int left = 2 * i;
+    int right = 2 * i + 1;
+    if (left <= n && arr[largest] < arr[left]) largest = left;
+    if (right <= n && arr[largest] < arr[right]) largest = right;
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapyfy(arr, n, largest);
+    }
+}
+
+
+void heapSort(int arr[], int n){
+    int t = n;
+    while(t>1){
+        swap(arr[t], arr[1]);
+        t--;
+        heapyfy(arr, t, 1);
+    }
+}
+
+
 int main(int argc, char const *argv[]){
     Heap p;
     p.insert(60);
@@ -64,5 +89,13 @@ int main(int argc, char const *argv[]){
     p.print();
     p.deletion();
     p.print();
+    int array[6] = {-1, 54, 53, 55, 52, 50};
+    for(int i = 3; i>0; i--){
+        heapyfy(array, 6, i);
+    }
+    for(int i = 0; i<6; i++) cout<<array[i]<<" ";
+    cout<<endl;
+    heapSort(array, 6);
+    // for(int i = 0; i<6; i++) cout<<array[i]<<" ";
     return 0;
 }
