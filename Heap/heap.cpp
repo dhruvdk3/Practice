@@ -86,16 +86,16 @@ int main(int argc, char const *argv[]){
     p.insert(40);
     p.insert(30);
     p.insert(20);
-    p.print();
-    p.deletion();
-    p.print();
+    // p.print();
+    // p.deletion();
+    // p.print();
     int array[6] = {-1, 54, 53, 55, 52, 50};
     for(int i = 3; i>0; i--){
         heapyfy(array, 6, i);
     }
     for(int i = 0; i<6; i++) cout<<array[i]<<" ";
     cout<<endl;
-    heapSort(array, 6);
-    // for(int i = 0; i<6; i++) cout<<array[i]<<" ";
+    heapSort(array, 5);
+    for(int i = 0; i<6; i++) cout<<array[i]<<" ";
     return 0;
 }
