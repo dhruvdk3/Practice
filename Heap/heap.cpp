@@ -97,5 +97,9 @@ int main(int argc, char const *argv[]){
     cout<<endl;
     heapSort(array, 5);
     for(int i = 0; i<6; i++) cout<<array[i]<<" ";
+
+
+    priority_queue<int> pqmax; // max heap
+    priority_queue<int, vector<int>, greater<int>> pqmin; // minheap
     return 0;
 }
