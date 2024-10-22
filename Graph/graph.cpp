@@ -1,9 +1,10 @@
 #include<bits/stdc++.h>
+template <typename T>
 
 class Graph{
 public:
-    unordered_map<int, list<int>> adj;
-    void add_edge(int u, int v, bool direction){
+    unordered_map<T, list<T>> adj;
+    void add_edge(T u, T v, bool direction){
         adj[u].push_back(v);
         if(!direction){
             adj[v].push_back(u);
@@ -22,7 +23,7 @@ public:
 };
 
 int main(int argc, char const *argv[]){
-    Graph g;
+    Graph<int> g;
     g.add_edge(0, 1,0);
     g.add_edge(0, 4,0);
     g.add_edge(1, 3,0);
