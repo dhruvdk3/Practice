@@ -3,8 +3,8 @@ using namespace std;
 
 class HashTable {
 private:
-    static const int hashgroup = 10;  // Number of buckets in hash table
-    list<pair<int, string>> table[hashgroup];  // Array of lists for chaining
+    static const int hashgroup = 10;
+    list<pair<int, string>> table[hashgroup];
 
 public:
     bool isEmpty() const;
@@ -15,100 +15,90 @@ public:
     void printTable();
 };
 
-// Check if hash table is empty
 bool HashTable::isEmpty() const {
     int sum = 0;
     for (int i = 0; i < hashgroup; i++) {
-        sum += table[i].size();  // Sum up the size of all lists
+        sum += table[i].size();
     }
-    return sum == 0;  // If total size is 0, the table is empty
+    return sum == 0;
 }
 
-// Hash function to calculate the index
 int HashTable::hashFunction(int key) {
-    return key % hashgroup;  // Simple modulo hash function
+    return key % hashgroup;
 }
 
-// Insert key-value pair into the hash table
 void HashTable::insertItem(int key, string value) {
-    int hashvalue = hashFunction(key);  // Get the hash value
-    auto& cell = table[hashvalue];  // Get the list at the hashed index
+    int hashvalue = hashFunction(key);
+    auto& cell = table[hashvalue];
     auto itr = begin(cell);
     bool keyExists = false;
 
-    // Traverse the list to check if the key already exists
     for (; itr != cell.end(); itr++) {
         if (itr->first == key) {
             keyExists = true;
-            itr->second = value;  // Update the value if key exists
+            itr->second = value;
             break;
         }
     }
 
-    // If the key doesn't exist, add a new pair
     if (!keyExists) {
-        cell.emplace_back(key, value);  // Insert new key-value pair
+        cell.emplace_back(key, value);
     }
 }
 
-// Remove key-value pair from the hash table
 void HashTable::removeItem(int key) {
-    int hashvalue = hashFunction(key);  // Get the hash value
-    auto& cell = table[hashvalue];  // Get the list at the hashed index
+    int hashvalue = hashFunction(key);
+    auto& cell = table[hashvalue];
     auto itr = begin(cell);
 
-    // Traverse the list to find and remove the pair with the matching key
     for (; itr != cell.end(); itr++) {
         if (itr->first == key) {
-            itr = cell.erase(itr);  // Erase the key-value pair
+            itr = cell.erase(itr);
             break;
         }
     }
 }
 
-// Search for a key in the hash table and return the corresponding value
 string HashTable::searchTable(int key) {
-    int hashvalue = hashFunction(key);  // Get the hash value
-    auto& cell = table[hashvalue];  // Get the list at the hashed index
+    int hashvalue = hashFunction(key);
+    auto& cell = table[hashvalue];
     auto itr = begin(cell);
 
-    // Traverse the list to find the value for the given key
     for (; itr != cell.end(); itr++) {
         if (itr->first == key) {
-            return itr->second;  // Return the corresponding value
+            return itr->second;
         }
     }
-    return "Not Found";  // Return "Not Found" if key doesn't exist
+    return "Not Found";
 }
 
-// Print all key-value pairs in the hash table
 void HashTable::printTable() {
     for (int i = 0; i < hashgroup; i++) {
-        if (table[i].size() == 0) continue;  // Skip empty lists
+        if (table[i].size() == 0) continue;
         auto itr = table[i].begin();
         for (; itr != table[i].end(); itr++) {
-            cout << itr->first << " -> " << itr->second << endl;  // Print key-value pair
+            cout << itr->first << " -> " << itr->second << endl;
         }
     }
 }
 
 int main() {
-    HashTable ht;  // Create a hash table object
+    HashTable ht;
     cout << "Is the table empty? " << (ht.isEmpty() ? "Yes" : "No") << endl;
 
-    ht.insertItem(1, "one");  // Insert key-value pair (1, "one")
-    ht.insertItem(2, "two");  // Insert key-value pair (2, "two")
-    ht.insertItem(12, "twelve");  // Insert key-value pair (12, "twelve")
+    ht.insertItem(1, "one");
+    ht.insertItem(2, "two");
+    ht.insertItem(12, "twelve");
     
     cout << "After inserting items:" << endl;
-    ht.printTable();  // Print the hash table
+    ht.printTable();
 
-    cout << "Searching for key 2: " << ht.searchTable(2) << endl;  // Search for key 2
-    cout << "Searching for key 5: " << ht.searchTable(5) << endl;  // Search for key 5 (not in table)
+    cout << "Searching for key 2: " << ht.searchTable(2) << endl;
+    cout << "Searching for key 5: " << ht.searchTable(5) << endl;
 
-    ht.removeItem(2);  // Remove item with key 2
+    ht.removeItem(2);
     cout << "After removing key 2:" << endl;
-    ht.printTable();  // Print the hash table again
+    ht.printTable();
 
     return 0;
 }
