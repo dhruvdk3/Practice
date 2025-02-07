@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
     s.push(4);
     s.pop();
     s.peek();
-
+    vector<int> v(4,0);
+    for(auto i: v) cout<<i<<" ";
     return 0;
 }
